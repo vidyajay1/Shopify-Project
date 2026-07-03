@@ -1,0 +1,67 @@
+{% comment %}
+  Product Metafields Panel
+  Drop into main-product.liquid as: {% render 'product-metafields', product: product %}
+
+  Renders whichever of these metafields are populated, in this priority order:
+    custom.materials        (single line text)
+    custom.care_instructions (multi line text)
+    custom.size_guide        (metaobject_reference -> size_guide metaobject)
+    custom.shipping_note     (single line text)
+
+  Empty fields are simply skipped — merchants only need to fill in what's
+  relevant per product, no code changes required.
+{% endcomment %}
+
+{% liquid
+  assign has_any = false
+  if product.metafields.custom.materials != blank
+    assign has_any = true
+  endif
+  if product.metafields.custom.care_instructions != blank
+    assign has_any = true
+  endif
+  if product.metafields.custom.size_guide != blank
+    assign has_any = true
+  endif
+  if product.metafields.custom.shipping_note != blank
+    assign has_any = true
+  endif
+%}
+
+{% if has_any %}
+<div class="product-metafields">
+  {% if product.metafields.custom.materials != blank %}
+    <details class="product-metafields__item" open>
+      <summary>Materials</summary>
+      <div class="product-metafields__content">{{ product.metafields.custom.materials.value }}</div>
+    </details>
+  {% endif %}
+
+  {% if product.metafields.custom.care_instructions != blank %}
+    <details class="product-metafields__item">
+      <summary>Care Instructions</summary>
+      <div class="product-metafields__content">{{ product.metafields.custom.care_instructions.value }}</div>
+    </details>
+  {% endif %}
+
+  {% if product.metafields.custom.size_guide != blank %}
+    {% assign guide = product.metafields.custom.size_guide.value %}
+    <details class="product-metafields__item">
+      <summary>Size Guide</summary>
+      <div class="product-metafields__content">
+        {% if guide.description %}{{ guide.description.value }}{% endif %}
+        {% if guide.chart_image %}
+          {{ guide.chart_image.value | image_url: width: 800 | image_tag: loading: 'lazy' }}
+        {% endif %}
+      </div>
+    </details>
+  {% endif %}
+
+  {% if product.metafields.custom.shipping_note != blank %}
+    <details class="product-metafields__item">
+      <summary>Shipping</summary>
+      <div class="product-metafields__content">{{ product.metafields.custom.shipping_note.value }}</div>
+    </details>
+  {% endif %}
+</div>
+{% endif %}

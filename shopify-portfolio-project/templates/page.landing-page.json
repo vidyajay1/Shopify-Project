@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-landing",
+      "settings": {
+        "layout": "center",
+        "overlay_opacity": 30,
+        "background_color": "#111111",
+        "text_color": "#ffffff"
+      },
+      "blocks": {
+        "heading_1": {
+          "type": "heading",
+          "settings": { "heading": "Summer Collection Is Here" }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": { "text": "<p>Lightweight fabrics, bold colors, free shipping this week only.</p>" }
+        },
+        "button_1": {
+          "type": "button",
+          "settings": { "button_label": "Shop the Collection", "button_link": "/collections/summer", "style": "primary" }
+        },
+        "badges_1": {
+          "type": "trust_badges",
+          "settings": { "badge_1": "Free shipping over $50", "badge_2": "30-day returns", "badge_3": "5-star rated" }
+        }
+      },
+      "block_order": ["heading_1", "text_1", "button_1", "badges_1"]
+    },
+    "featured": {
+      "type": "featured-collection-metaobjects",
+      "settings": {
+        "heading": "Best Sellers",
+        "subheading": "Loved by our customers",
+        "products_to_show": 8
+      }
+    }
+  },
+  "order": ["hero", "featured"]
+}
