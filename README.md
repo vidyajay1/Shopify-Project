@@ -1,7 +1,6 @@
 # Shopify E-Commerce Operations Portfolio
 
-A working Shopify theme project built to demonstrate the core skills listed in an
-"E-Commerce Associate — Remote" job posting: section/theme editing, landing page
+A working Shopify theme project: section/theme editing, landing page
 building, metafields & metaobjects, CSS customization, app integration strategy,
 and a QA/CRO process.
 
